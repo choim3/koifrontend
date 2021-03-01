@@ -37,7 +37,58 @@
   }
 }
 
+nav {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  background: #E94B3CFF;
+  color: white;
+}
 
 .navbar {
-  background-color: blue;
+  height: 55px;
+}
+
+.NavStuff {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  width: 30%;
+  list-style: none;
+}
+
+.text-white {
+  color: white;
+}
+
+.bold-white {
+  color: white;
+  font-weight: bolder;
+}
+
+body {
+  background: #101820FF;
+  color: white;
+}
+
+#home-heading {
+  position: relative;
+  min-height: 500px;
+  top: 100px;
+  background: url('./imgs/a.jpg');
+  background-attachment: fixed;
+  background-repeat: no-repeat;
+  background-size: cover;
+  text-align: center;
+  color: #fff;
+
+}
+
+.dark-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.4);
 }
