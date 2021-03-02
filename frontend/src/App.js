@@ -11,18 +11,17 @@ import Order from './components/Order'
 import Edit from './components/Edit'
 import SignIn from './components/SignIn'
 // REDUX IMPORTS
-import {createStore} from 'redux'
-import rootReducer from './reducers'
+import {createStore, applyMiddleware} from 'redux'
 import {Provider} from 'react-redux'
 import {useSelector, useDispatch} from 'react-redux' // this lets you output the value of a state
-// IMPORT {actions} from './actions'
+import {toggleLogged} from './actions'
+import store from './store'
 
 
 function App() {
 
   return (
-    // <Provider store={store}>
-      // <h3> Counter {counter} </h3>
+    <Provider store ={store}>
       <Router>
         <div className="App">
           <Nav/>
@@ -35,7 +34,7 @@ function App() {
           </Switch>
         </div>
       </Router>
-    // </Provider>
+    </Provider>
   );
 }
 
