@@ -1,8 +1,9 @@
 // IMPORT OTHER REDUCER FILES/FUNCTIONS INTO HERE
+import {combineReducers} from 'redux'
 import loggedReducer from './isLogged'
 import menuReducer from './menuReducer'
 import orderReducer from './orderReducer'
-import {combineReducers} from 'redux'
+import userReducer from './userReducer'
 
 const rootReducer = combineReducers ({
   //Create a key and then reducer on other side
@@ -12,6 +13,10 @@ const rootReducer = combineReducers ({
   // which means testReducer: testReducer
   isLogged: loggedReducer,
   foods: menuReducer,
-  order: orderReducer
+  order: orderReducer,
+  user: userReducer,
+  // new_user: userReducer,
+  // login_user: userReducer,
+  // user_object: userReducer
 })
 export default rootReducer

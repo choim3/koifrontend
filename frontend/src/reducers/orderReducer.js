@@ -1,7 +1,7 @@
 import {ADD_TO_ORDER} from '../actions/types'
 
 const initialState = {
-  itemsInOrder: []
+  foodInOrder: []
 }
 
 const orderReducer = (state = initialState, action) => {

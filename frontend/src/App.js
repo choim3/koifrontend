@@ -10,31 +10,40 @@ import Menu from './components/Menu'
 import Order from './components/Order'
 import Edit from './components/Edit'
 import SignIn from './components/SignIn'
+import SignUp from './components/SignUp'
+import Welcome from './containers/Welcome'
 // REDUX IMPORTS
 import {createStore, applyMiddleware} from 'redux'
-import {Provider} from 'react-redux'
-import {useSelector, useDispatch} from 'react-redux' // this lets you output the value of a state
 import {toggleLogged} from './actions'
-import store from './store'
+import {useSelector, useDispatch} from 'react-redux' // this lets you output the value of a state
 
 
 function App() {
+  const userEmail = useSelector(state => state.user.user.email);
+  const userName = useSelector(state => state.user.user.name);
+  const userPassword = useSelector(state => state.user.user.password);
+  const userId = useSelector(state => state.user.user.id);
 
+
+  <Route   exact path="/Home" render={() => {
+                  return <Home userInfo={this.state.user} />;
+                }}
+              />
   return (
-    <Provider store ={store}>
       <Router>
         <div className="App">
           <Nav/>
+          <h3> g {userId}</h3>
+          {/*Add error handling if, I have time.*/}
           <Switch>
             <Route path='/' exact component={Home} />
             <Route path='/menu' component={Menu} />
             <Route path='/order' component={Order} />
-            <Route path='/welcome' component={SignIn} />
-            <Route path='/edit' component={Edit} />
+            <Route path='/welcome' component={Welcome} />
+            <Route path='/edit' render={ () => {return <Edit userEmail={userEmail} userName={userName} userPassword={userPassword} userId={userId} /> }} />
           </Switch>
         </div>
       </Router>
-    </Provider>
   );
 }
 

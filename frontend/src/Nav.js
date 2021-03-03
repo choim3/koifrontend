@@ -20,7 +20,7 @@ class Nav extends Component {
           </Link>
 
           <Link to="/Order">
-          <li className = "bold-white nav-text"> Online Order</li>
+          <li className = "bold-white nav-text"> Cart </li>
           </Link>
 
           <Link to="/Edit">

@@ -1,8 +1,7 @@
 import {FETCH_FOODS} from '../actions/types'
 
 const initialState = {
-  items: [],
-  item: {}
+  items: []
 }
 
 const menuReducer = (state = initialState, action) => {
