@@ -1,7 +1,8 @@
-import {FETCH_FOODS} from '../actions/types'
+import {FETCH_FOODS, FOOD_RATING} from '../actions/types'
 
 const initialState = {
-  items: []
+  items: [],
+  rating: []
 }
 
 const menuReducer = (state = initialState, action) => {
@@ -11,6 +12,12 @@ const menuReducer = (state = initialState, action) => {
         ...state,
         items: action.payload
       }
+    case FOOD_RATING:
+      return {
+        ...state,
+        rating: action.payload
+      }
+    
     default:
       return state
   }

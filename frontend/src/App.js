@@ -16,19 +16,40 @@ import Welcome from './containers/Welcome'
 import {createStore, applyMiddleware} from 'redux'
 import {toggleLogged} from './actions'
 import {useSelector, useDispatch} from 'react-redux' // this lets you output the value of a state
-
+import {useEffect} from 'react'
+import {CURRENT_USER, SET_FOOD_IN_ORDER} from './actions/types'
 
 function App() {
-  const userEmail = useSelector(state => state.user.user.email);
-  const userName = useSelector(state => state.user.user.name);
-  const userPassword = useSelector(state => state.user.user.password);
-  const userId = useSelector(state => state.user.user.id);
+  const userEmail = useSelector(state => state.userReducer.user.email);
+  const userName = useSelector(state => state.userReducer.user.name);
+  const userPassword = useSelector(state => state.userReducer.user.password);
+  const userId = useSelector(state => state.userReducer.user.id);
+  const itemsInCart = useSelector(state => state.orderReducer.foodInOrder);
+  const dispatch = useDispatch()
 
+  useEffect(() => {
+      let token = sessionStorage.getItem('token')
+      if (token) {
+        fetch('http://localhost:3000/profile', {
+          method: "GET",
+          headers: {
+            Authorization: `bearer ${token}`,
+          },
+        })
+        .then(resp => resp.json())
+        .then(user => {
+          dispatch({
+            type: CURRENT_USER,
+            payload: user.user
+          })
+          dispatch({
+            type: SET_FOOD_IN_ORDER,
+            payload: user.user.order_menus
+          })
+        })
+      }
+  }, [])
 
-  <Route   exact path="/Home" render={() => {
-                  return <Home userInfo={this.state.user} />;
-                }}
-              />
   return (
       <Router>
         <div className="App">
@@ -37,8 +58,9 @@ function App() {
           {/*Add error handling if, I have time.*/}
           <Switch>
             <Route path='/' exact component={Home} />
-            <Route path='/menu' component={Menu} />
-            <Route path='/order' component={Order} />
+            {/*<Route path='/menu' component={Menu} />*/}
+            <Route path='/menu' render={ () => {return <Menu userId={userId} itemsInCart={itemsInCart} /> }} />
+            <Route path='/order' render={ () => {return <Order itemsInCart={itemsInCart} userId={userId}/> }} />
             <Route path='/welcome' component={Welcome} />
             <Route path='/edit' render={ () => {return <Edit userEmail={userEmail} userName={userName} userPassword={userPassword} userId={userId} /> }} />
           </Switch>

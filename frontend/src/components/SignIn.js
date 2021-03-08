@@ -8,27 +8,9 @@ class SignIn extends Component {
     password: ""
   }
 
-  componentDidMount(){
-    this.fetchLoggedInUser()
-  }
 
-  fetchLoggedInUser = () => {
-    let token = sessionStorage.getItem('token')
-    if (token) {
-      fetch('http://localhost:3000/profile', {
-        method: "GET",
-        headers: {
-          Authorization: `bearer ${token}`,
-        },
-      })
-      .then(resp => resp.json())
-      .then(user => {
-        this.setState({
-          userData: user.user
-        })}
-      )
-    }
-  }
+
+
 
   handleChange = (e) => {
     this.setState({
@@ -41,9 +23,7 @@ class SignIn extends Component {
     this.props.loginUser(this.state, this.props.push)
   }
 
-  // this.setState({
-  //   userObject: user.user
-  // })
+
 
 
   render() {

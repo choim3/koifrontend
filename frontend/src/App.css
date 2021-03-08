@@ -92,3 +92,16 @@ body {
   height: 100%;
   background: rgba(0, 0, 0, 0.4);
 }
+.menu_card {
+  background-color: #101820FF !important;
+  margin-bottom: 30px;
+}
+
+.modal-card {
+  background-color: #101820FF!important;
+}
+
+closeButton {
+  color: white !important;
+  opacity: 1 !important;
+}

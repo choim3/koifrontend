@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import {connect} from 'react-redux';
 import {fetchFoods, foodRating} from '../actions/menuAction'
-import {postOrder} from '../actions/orderAction'
+import {addToOrder, postOrder} from '../actions/orderAction'
 import {Modal, Card, Form} from 'react-bootstrap'
 import 'bootstrap/dist/css/bootstrap.min.css'
 import StarRatings from 'react-star-ratings';
@@ -17,7 +17,10 @@ class Menu extends Component {
     data: {}
   }
 
-
+  addToOrder = (e, food) => {
+    e.preventDefault()
+    this.props.addToOrder(food)
+  }
 
   handleOrder = (e, food) => {
     e.preventDefault()
@@ -73,7 +76,7 @@ class Menu extends Component {
         <Modal.Footer className="modal-card text-white">
           <form onSubmit={(e) => this.handleRating(e, food)}>
             <label>Rating: </label>
-            <StarRatings defaultValue={2}numberOfStarts={5} name="rating"
+            <StarRatings numberOfStarts={5} name="rating"
 
               starRatedColor="green" starEmptyColor="white"
               starHoverColor="#E94B3CFF"
@@ -87,7 +90,7 @@ class Menu extends Component {
               <option value="5"> 5 </option>
             </select>
               <button type="submit">Rate</button>*/}
-              <button className="btn-primary" onClick = {(e) => this.handleOrder(e, food)}>Add To Order</button>
+              <button className="btn-primary" onClick = {(e) => this.addToOrder(e, food)}>Add To Order</button>
           </form>
         </Modal.Footer>
       </Modal>
@@ -116,4 +119,4 @@ const mapStateToProps = (state) => ({
   user: state.userReducer.user
 })
 
-export default connect(mapStateToProps, {fetchFoods, postOrder, foodRating})(Menu);
+export default connect(mapStateToProps, {fetchFoods, addToOrder, postOrder, foodRating})(Menu);

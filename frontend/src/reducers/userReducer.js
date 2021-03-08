@@ -1,4 +1,4 @@
-import {CURRENT_USER, NEW_USER, LOGIN_USER, USER_OBJECT} from '../actions/types'
+import {CURRENT_USER, NEW_USER, LOGIN_USER, USER_OBJECT, LOGOUT} from '../actions/types'
 
 const initialState = {
   email: "",
@@ -24,6 +24,11 @@ const userReducer = (state = initialState, action) => {
         loginUser: action.payload
       }
     case USER_OBJECT:
+      return {
+        ...state,
+        user: action.payload
+      }
+    case LOGOUT:
       return {
         ...state,
         user: action.payload

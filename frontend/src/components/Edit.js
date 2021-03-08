@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import {connect} from 'react-redux'
-import {editUser, deleteUser} from '../actions/userAction'
+import {editUser, deleteUser, logoutUser} from '../actions/userAction'
 
 
 class Edit extends Component {
@@ -23,6 +23,10 @@ class Edit extends Component {
 
   handleDelete = () => {
     this.props.deleteUser(this.props.userId, this.props.push)
+  }
+
+  handleLogout = () => {
+    this.props.logoutUser(this.props.push)
   }
 
   render() {
@@ -49,9 +53,10 @@ class Edit extends Component {
 
         </form>
         <button onClick={this.handleDelete}> Delete Account </button>
+        <button onClick={this.handleLogout}> Logout </button>
       </div>
     );
   }
 }
 
-export default connect(null, {editUser, deleteUser})(Edit);
+export default connect(null, {editUser, deleteUser, logoutUser})(Edit);

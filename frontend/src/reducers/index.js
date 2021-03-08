@@ -13,8 +13,8 @@ const rootReducer = combineReducers ({
   // which means testReducer: testReducer
   isLogged: loggedReducer,
   foods: menuReducer,
-  order: orderReducer,
-  user: userReducer,
+  orderReducer,
+  userReducer
   // new_user: userReducer,
   // login_user: userReducer,
   // user_object: userReducer
