@@ -39,6 +39,10 @@ export default App;
 
 
 
+
+
+
+
 import React, { Component } from "react";
 import {connect} from 'react-redux';
 import {fetchFoods, foodRating} from '../actions/menuAction'
@@ -46,6 +50,7 @@ import {postOrder} from '../actions/orderAction'
 import {Modal, Card, Form} from 'react-bootstrap'
 import 'bootstrap/dist/css/bootstrap.min.css'
 import StarRatings from 'react-star-ratings';
+import MenuModal from "./MenuModal"
 
 class Menu extends Component {
   componentDidMount(){
@@ -55,7 +60,7 @@ class Menu extends Component {
   state = {
     rating: "",
     toggleModal: false,
-    data: {}
+    selectedItem: {}
   }
 
 
@@ -82,7 +87,7 @@ class Menu extends Component {
   handleOpenModal = (e, food) => {
     this.setState({
       toggleModal: true,
-      data: food
+      selectedItem: food
     })
   }
 
@@ -92,58 +97,26 @@ class Menu extends Component {
     })
   }
 
+  foodItems = () => {
+    return this.props.foods.map(food => (
+    <div>
+    <Card className="menu_card" onClick={(e) => this.handleOpenModal(e, food)} key={food.id}>
+    <h4 className="bold-white">{food.name} Roll</h4>
+    <h5 className="bold-white">${food.price}</h5>
+    </Card>
+    </div>
+  ))}
 
   render() {
-    const foodItems = this.props.foods.map(food => (
-    <div>
-      <Card className="menu_card" onClick={(e) => this.handleOpenModal(e, food)} key={food.id}>
-        <h4 className="bold-white">{food.name} Roll</h4>
-        <h5 className="bold-white">${food.price}</h5>
-      </Card>
-
-      <Modal  show={this.state.toggleModal} onHide={this.handleCloseModal} >
-        <Modal.Header className="modal-card bold-white" closeButton>
-          <Modal.Title>
-          {food.name} Roll
-          ${food.price}
-          </Modal.Title>
-        </Modal.Header>
-        <Modal.Body className="modal-card text-white">
-          {food.desc}
-        </Modal.Body>
-        <Modal.Footer className="modal-card text-white">
-          <form onSubmit={(e) => this.handleRating(e, food)}>
-            <label>Rating: </label>
-            <StarRatings defaultValue={2}numberOfStarts={5} name="rating"
-
-              starRatedColor="green" starEmptyColor="white"
-              starHoverColor="#E94B3CFF"
-              changeRating={(e) => this.handleRating(e, food)}
-            />
-            {/*<select name="rating" onChange={(e) => this.handleChange(e)}>
-              <option value="1"> 1 </option>
-              <option value="2"> 2 </option>
-              <option value="3"> 3 </option>
-              <option value="4"> 4 </option>
-              <option value="5"> 5 </option>
-            </select>
-              <button type="submit">Rate</button>*/}
-              <button className="btn-primary" onClick = {(e) => this.handleOrder(e, food)}>Add To Order</button>
-          </form>
-        </Modal.Footer>
-      </Modal>
-
-      </div>
-    ))
 
 
     return (
       <div>
         <h3 className='bold-white'> Menu </h3>
-        {foodItems}
+        {this.foodItems()}
+        {this.state.handleOpenModal ? <MenuModal allFoods={this.props.foods}handleOpenModal={this.state.toggleModal} handleCloseModal={this.handleCloseModal} selectedFood={this.state.selectedFood}/> : null}
         <br/>
         <button onClick = {this.handleOrder}>Checkout</button>
-
       </div>
 
     );

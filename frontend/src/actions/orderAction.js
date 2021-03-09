@@ -13,7 +13,7 @@ export const postOrder = (foodData, userId) => {
   let token = sessionStorage.getItem('token')
   let orderObj = {
     menu_item_id: foodData.id,
-    user_id: userId
+    //orderId: dont need because of strong params only require ^^ menu items id
   }
   return function(dispatch) {
     fetch('http://localhost:3000/order_menus', {
@@ -49,11 +49,16 @@ export const deleteItem = (orderMenuId) => {
   }
 }
 
-export const checkoutOrder = (foodData) => {
-  return function(dispatch) {
-    dispatch({
-      type: DELETE_ORDER,
-      payload: foodData
+export const checkoutOrder = (orderId) => {
+    let token = sessionStorage.getItem('token')
+    fetch(`http://localhost:3000/orders/${orderId}`, {
+      method: "PATCH",
+      headers: {
+        Authorization: `bearer ${token}`,
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify({is_ordered: true})
     })
-  }
+    .then(res => res.json())
+    .then(alertMessage => alert("Order Placed!"))
 }

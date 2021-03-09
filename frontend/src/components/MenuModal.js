@@ -1,26 +1,19 @@
 import React, { Component } from "react";
 import {connect} from 'react-redux';
 import {fetchFoods, foodRating} from '../actions/menuAction'
-import {addToOrder, postOrder} from '../actions/orderAction'
+import { postOrder} from '../actions/orderAction'
 import {Modal, Card, Form} from 'react-bootstrap'
 import 'bootstrap/dist/css/bootstrap.min.css'
 import StarRatings from 'react-star-ratings';
 
-class Menu extends Component {
-  componentDidMount(){
-    this.props.fetchFoods()
-  }
-
+class MenuModal extends Component {
   state = {
     rating: "",
     toggleModal: false,
-    data: {}
+    selectedItem: {}
   }
 
-  addToOrder = (e, food) => {
-    e.preventDefault()
-    this.props.addToOrder(food)
-  }
+
 
   handleOrder = (e, food) => {
     e.preventDefault()
@@ -44,7 +37,7 @@ class Menu extends Component {
   handleOpenModal = (e, food) => {
     this.setState({
       toggleModal: true,
-      data: food
+      selectedItem: food
     })
   }
 
@@ -54,33 +47,37 @@ class Menu extends Component {
     })
   }
 
-
-  render() {
-    const foodItems = this.props.foods.map(food => (
-    <div>
+  getAllFoodItems = () => {
+    let matchFoods = this.props.allFoods.find(food => food.id === this.selectedFood.id)
+    return matchFoods.map (food =>
+      <div>
       <Card className="menu_card" onClick={(e) => this.handleOpenModal(e, food)} key={food.id}>
-        <h4 className="bold-white">{food.name} Roll</h4>
-        <h5 className="bold-white">${food.price}</h5>
+      <h4 className="bold-white">{food.name} Roll</h4>
+      <h5 className="bold-white">${food.price}</h5>
       </Card>
-
+      </div>
+    )
+  }
+  render() {
+    return (
       <Modal  show={this.state.toggleModal} onHide={this.handleCloseModal} >
         <Modal.Header className="modal-card bold-white" closeButton>
           <Modal.Title>
-          {food.name} Roll
-          ${food.price}
+          {this.pops.selectedFood.name} Roll
+          ${this.pops.selectedFood.price}
           </Modal.Title>
         </Modal.Header>
         <Modal.Body className="modal-card text-white">
-          {food.desc}
+          {this.pops.selectedFood.desc}
         </Modal.Body>
         <Modal.Footer className="modal-card text-white">
-          <form onSubmit={(e) => this.handleRating(e, food)}>
+          <form onSubmit={(e) => this.handleRating(e, this.pops.selectedFood)}>
             <label>Rating: </label>
             <StarRatings numberOfStarts={5} name="rating"
 
               starRatedColor="green" starEmptyColor="white"
               starHoverColor="#E94B3CFF"
-              changeRating={(e) => this.handleRating(e, food)}
+              changeRating={(e) => this.handleRating(e, this.pops.selectedFood)}
             />
             {/*<select name="rating" onChange={(e) => this.handleChange(e)}>
               <option value="1"> 1 </option>
@@ -90,24 +87,10 @@ class Menu extends Component {
               <option value="5"> 5 </option>
             </select>
               <button type="submit">Rate</button>*/}
-              <button className="btn-primary" onClick = {(e) => this.addToOrder(e, food)}>Add To Order</button>
+              <button className="btn-primary" onClick = {(e) => this.addToOrder(e, this.pops.selectedFood)}>Add To Order</button>
           </form>
         </Modal.Footer>
       </Modal>
-
-      </div>
-    ))
-
-
-    return (
-      <div>
-        <h3 className='bold-white'> Menu </h3>
-        {foodItems}
-        <br/>
-        <button onClick = {this.handleOrder}>Checkout</button>
-
-      </div>
-
     );
   }
 }
@@ -119,4 +102,4 @@ const mapStateToProps = (state) => ({
   user: state.userReducer.user
 })
 
-export default connect(mapStateToProps, {fetchFoods, addToOrder, postOrder, foodRating})(Menu);
+export default connect(mapStateToProps, {fetchFoods, postOrder, foodRating})(MenuModal);

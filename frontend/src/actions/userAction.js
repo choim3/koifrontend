@@ -64,7 +64,6 @@ export const loginUser = (userData, historyPush) => {
 }
 
 export const editUser = (userData, userId) => {
-  debugger
   return function(dispatch) {
     let token = sessionStorage.getItem('token')
     fetch(`http://localhost:3000/users/${userId}`, {
