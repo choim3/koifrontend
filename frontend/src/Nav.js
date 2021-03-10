@@ -1,39 +1,44 @@
 import React, {Component} from 'react'
 import { Link } from 'react-router-dom';
-import "bootstrap/dist/css/bootstrap.css";
+import {Navbar, Nav, NavDropdown} from 'react-bootstrap';
 import './App.css'
+import {logoutUser} from './actions/userAction'
+import {connect} from 'react-redux'
 
 
-class Nav extends Component {
+
+class NavTop extends Component {
+
+  handleLogout = () => {
+    this.props.logoutUser()
+    window.location.replace(`http://localhost:3001/`);
+  }
+
   render() {
     return(
-      <nav className="navbar">
-        <h1 className="bold-white"> Koibito </h1>
-        <ul className ="NavStuff">
-
-          <Link to="/">
-            <li className="bold-white nav-text"> Home </li>
-          </Link>
-
-          <Link to="/Menu">
-            <li className = "bold-white nav-text"> Menu </li>
-          </Link>
-
-          <Link to="/Order">
-          <li className = "bold-white nav-text"> Cart </li>
-          </Link>
-
-          <Link to="/Edit">
-            <li className = "bold-white nav-text"> Edit </li>
-          </Link>
-
-          <Link to="/Welcome">
-            <li className = "bold-white nav-text"> Sign In </li>
-          </Link>
-
-        </ul>
-      </nav>
+      <Navbar collapseOnSelect expand="lg" variant="light" className="NavBar">
+  <Navbar.Brand className="bold-c-font" href="/">Koibito</Navbar.Brand>
+  <Navbar.Toggle aria-controls="responsive-navbar-nav" />
+  <Navbar.Collapse id="responsive-navbar-nav">
+    <Nav className="mr-auto">
+    <Nav.Link className="bold-c-font" href="/">Home</Nav.Link>
+    <Nav.Link className="bold-c-font" href="menu">Menu</Nav.Link>
+    <Nav.Link className="bold-c-font" href="order">View Order({this.props.itemsInCart.length})</Nav.Link>
+    </Nav>
+    <Nav>
+    <NavDropdown className="bold-c-font"title="Account" id="collasible-nav-dropdown">
+    <NavDropdown.Item className="bold-c-font" href="signin">Sign In</NavDropdown.Item>
+    <NavDropdown.Item className="bold-c-font" href="signup">Sign Up</NavDropdown.Item>
+    {this.props.userName ? <NavDropdown.Item className="bold-c-font" href="edit">Edit Account</NavDropdown.Item> : null}
+    <NavDropdown.Divider />
+    <NavDropdown.Item className="bold-c-font" href="https://www.doordash.com/store/koibito-one-at-lacey-lacey-568343/en-US" target="_blank">DoorDash Link</NavDropdown.Item>
+    {this.props.userName ? <NavDropdown.Item className="bold-c-font" onClick={this.handleLogout}> Logout </NavDropdown.Item> : null}
+    </NavDropdown>
+    {this.props.userName ? <Nav.Link className="bold-c-font">Welcome {this.props.userName.charAt(0).toUpperCase() + this.props.userName.slice(1)}! </Nav.Link> : <Nav.Link>  </Nav.Link>}
+    </Nav>
+  </Navbar.Collapse>
+</Navbar>
     )
   }
 }
-export default Nav;
+export default connect(null, {logoutUser})(NavTop);

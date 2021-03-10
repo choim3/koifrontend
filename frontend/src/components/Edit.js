@@ -5,8 +5,8 @@ import {editUser, deleteUser, logoutUser} from '../actions/userAction'
 
 class Edit extends Component {
   state = {
-    email: "",
-    name: "",
+    email: this.props.userEmail,
+    name: this.props.userName,
     password: ""
   }
 
@@ -23,38 +23,49 @@ class Edit extends Component {
 
   handleDelete = () => {
     this.props.deleteUser(this.props.userId, this.props.push)
+    window.location.replace(`http://localhost:3001/`);
   }
 
   handleLogout = () => {
-    this.props.logoutUser(this.props.push)
+    this.props.logoutUser()
+    window.location.replace(`http://localhost:3001/`);
   }
 
   render() {
     return (
-      <div>
-        <h3 className='bold-white'> Edit Me </h3>
-        <form onSubmit={this.handleUpdate}>
+      <section className="container-fluid bg3">
+      <div className="signup-overlay">
+      <section className='row justify-content-center'>
+        <section className='col-12 col-sm-6 col-md-3'>
+        <form className="form-container2 c-font" onSubmit={this.handleUpdate}>
+        <h3 className='bold-white'> Edit Account </h3>
+        <div className='form-group'>
           <label>
             <input type="text" placeholder="email" name="email" defaultValue={this.props.userEmail} onChange={this.handleChange} />
           </label>
-          <br/>
-
+          </div>
+          <div className='form-group'>
           <label>
             <input type="text" placeholder="name" name="name" defaultValue={this.props.userName} onChange={this.handleChange}/>
           </label>
-          <br/>
-
+          </div>
+          <div className='form-group'>
           <label>
             <input type="password" placeholder="new password" name="password" onChange={this.handleChange}/>
           </label>
-          <br/>
+          </div>
 
-          <button type="submit"> Save Changes </button>
+          <button className='btn btn-outline-danger' type="submit"> Save Changes </button><br/>
+          {/*<button className='btn btn-outline-danger up' onClick={this.handleLogout}> Log Out </button><br/>*/}
 
         </form>
-        <button onClick={this.handleDelete}> Delete Account </button>
-        <button onClick={this.handleLogout}> Logout </button>
+        <button className='btn btn-danger up' onClick={this.handleDelete}> Delete Account </button><br/>
+        <div className="edit buttons">
+        </div>
+        </section>
+      </section>
       </div>
+      </section>
     );
   }
 }

@@ -1,4 +1,4 @@
-import {ADD_TO_ORDER, POST_ORDER, DELETE_ORDER} from './types'
+import {ADD_TO_ORDER, POST_ORDER, DELETE_ORDER, FETCH_ORDER} from './types'
 
 // export const addToOrder = (foodData) => {
 //   return function(dispatch) {
@@ -8,6 +8,17 @@ import {ADD_TO_ORDER, POST_ORDER, DELETE_ORDER} from './types'
 //     })
 //   }
 // }
+
+export function fetchOrder(orderId) {
+  return function(dispatch) {
+  fetch(`http://localhost:3000/orders/${orderId}`)
+  .then(res => res.json())
+  .then(foods => dispatch({
+    type: FETCH_ORDER,
+    payload: foods
+  }))
+  }
+}
 
 export const postOrder = (foodData, userId) => {
   let token = sessionStorage.getItem('token')

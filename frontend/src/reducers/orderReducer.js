@@ -1,4 +1,4 @@
-import {ADD_TO_ORDER, POST_ORDER, LOGOUT, SET_FOOD_IN_ORDER} from '../actions/types'
+import {ADD_TO_ORDER, POST_ORDER, LOGOUT, SET_FOOD_IN_ORDER, FETCH_ORDER} from '../actions/types'
 
 
 const initialState = {
@@ -22,6 +22,11 @@ const orderReducer = (state = initialState, action) => {
       return {
         ...state,
         foodInOrder: action.payload
+      }
+    case FETCH_ORDER:
+      return {
+        ...state,
+        order: action.payload
       }
     default:
       return state

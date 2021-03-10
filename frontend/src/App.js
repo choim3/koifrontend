@@ -1,9 +1,10 @@
 // CSS IMPORTS
 import './App.css';
+import './index.css'
 import "bootstrap/dist/css/bootstrap.css";
 // NAVBAR IMPORTS
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
-import Nav from "./Nav";
+import NavTop from "./Nav";
 // COMPONENT IMPORTS
 import Home from './components/Home'
 import Menu from './components/Menu'
@@ -53,15 +54,15 @@ function App() {
   return (
       <Router>
         <div className="App">
-          <Nav/>
-          <h3> g {userId}</h3>
+          <NavTop userName={userName} itemsInCart={itemsInCart}/>
           {/*Add error handling if, I have time.*/}
           <Switch>
             <Route path='/' exact component={Home} />
             {/*<Route path='/menu' component={Menu} />*/}
             <Route path='/menu' render={ () => {return <Menu userId={userId} itemsInCart={itemsInCart} /> }} />
             <Route path='/order' render={ () => {return <Order itemsInCart={itemsInCart} userId={userId}/> }} />
-            <Route path='/welcome' component={Welcome} />
+            <Route path='/signin' component={SignIn} />
+            <Route path='/signup' component={SignUp} />
             <Route path='/edit' render={ () => {return <Edit userEmail={userEmail} userName={userName} userPassword={userPassword} userId={userId} /> }} />
           </Switch>
         </div>

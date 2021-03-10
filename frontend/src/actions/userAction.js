@@ -94,7 +94,7 @@ export const editUser = (userData, userId) => {
       }
     }
 
-  export const logoutUser = (historyPush) => {
+  export const logoutUser = () => {
     return function(dispatch) {
       sessionStorage.clear()
       dispatch({
@@ -106,5 +106,4 @@ export const editUser = (userData, userId) => {
         payload: []
       })
     }
-    historyPush('/')
   }

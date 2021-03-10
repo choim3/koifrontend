@@ -74,13 +74,15 @@ body {
 #home-heading {
   position: relative;
   min-height: 500px;
-  top: 100px;
-  background: url('./imgs/a.jpg');
+  margin-top: 20px;
+  /* top: 100px; */
+  background: url('./imgs/heromenu.jpg');
   background-attachment: fixed;
   background-repeat: no-repeat;
   background-size: cover;
   text-align: center;
   color: #fff;
+  margin-top: 150px;
 
 }
 
@@ -109,3 +111,267 @@ closeButton {
 .learn {
   background-color: #101820FF !important;
 }
+
+.form-container {
+  position: sticky;
+  top: 15vh;
+  background: #101820FF;
+  padding: 30px;
+  margin-top: 50px;
+  border-radius: 10px;
+  box-shadow: 10px 0px 10px 0px #000;
+}
+
+.form-container1 {
+  position: sticky;
+  top: 15vh;
+  background: #101820FF;
+  padding: 30px;
+  margin-top: 80px;
+  border-radius: 10px;
+  box-shadow: 10px 0px 10px 0px #000;
+}
+
+.form-container2 {
+  position: sticky;
+  top: 15vh;
+  background: #101820FF;
+  padding: 30px;
+  margin-top: 80px;
+  border-radius: 10px;
+  box-shadow: 10px 0px 10px 0px #000;
+}
+
+.bg3 {
+  background: url('./imgs/edit.jpg') no-repeat;
+  width: 100%;
+  height: 100vh;
+  background-size: 100%;
+
+}
+
+.bg2 {
+  background: url('./imgs/prepare.jpg') no-repeat;
+  width: 100%;
+  height: 100vh;
+  background-size: 100%;
+
+}
+
+.bg1 {
+  background: url('./imgs/place.jpg') no-repeat;
+  width: 100%;
+  height: 100vh;
+  background-size: 100%;
+
+}
+
+.login-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 111.8%;
+  margin-top: 55px;
+  background: rgba(0, 0, 0, 0.4);
+}
+
+.signup-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 111.9%;
+  margin-top: 54px;
+  background: rgba(0, 0, 0, 0.4);
+}
+
+.up {
+  margin-top: 10px;
+}
+
+.left {
+  margin-left: -10px;
+}
+.right {
+  margin-left: 90px;
+}
+.logo {
+  margin-top: 20px;
+}
+.edit {
+  margin-top: 25px;
+}
+
+.d-block{
+  width: 100%;
+  height: 80vh;
+  background-size: 80%;
+}
+
+.about {
+  margin-top: 1000px;
+}
+
+
+.image {
+  position: relative;
+  min-height: 500px;
+  margin-top: 20px;
+  /* top: 100px; */
+  background: url('./imgs/b.jpg');
+  background-attachment: fixed;
+  background-repeat: no-repeat;
+  background-size: cover;
+  text-align: center;
+  color: #fff;
+}
+
+.overlay {
+  width: 100%;
+  background: rgba(0, 0, 0, 0.7);
+}
+
+.order {
+  background: url('./imgs/order.jpg') repeat;
+  width: 100%;
+  height: 150vh;
+  background-size: 100%;
+  filter: blur(5px);
+  position: absolute;
+}
+
+.order-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 150.1%;
+  margin-top: 55.3px;
+  background: rgba(0, 0, 0, 0.5);
+}
+
+
+.menu {
+  background: url('./imgs/menu.jpg') repeat;
+  width: 100%;
+  height: 100vh;
+  background-size: 100%;
+  filter: blur(5px);
+}
+
+.menu-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100.1%;
+  margin-top: 54.3px;
+  background: rgba(0, 0, 0, 0.5);
+}
+
+.menu_card {
+  background: none !important;
+}
+
+/* img {
+  width: 100%;
+  height: 100vh;
+  background-size: 70%;
+  filter: blur(3px);
+} */
+
+.d-block{
+  position: relative;
+  width:100%;
+  height:600px;
+  object-fit:cover;
+  object-position:50% 50%;
+  opacity: .5;
+  filter: drop-shadow(5px);
+  background-position: center;
+  background-attachment: fixed;
+  background-size: cover;
+ }
+
+ .carousel-overlay {
+   position: relative;
+   top: 0;
+   left: 0;
+   width: 100%;
+   height: 100.1%;
+   margin-top: 54px;
+   background: rgba(0, 0, 0, 1);
+ }
+
+ .main {
+   background: url('./imgs/menu.jpg') repeat;
+   height: 100vh;
+ }
+
+ NavBar {
+   background: #E94B3CFF !important;
+   box-shadow: 10px 0px 10px 0px #000;
+ }
+
+ .Carousel-Caption{
+   font-family: 'Cairo', sans-serif;
+   font-size: 15px;
+   margin-bottom: 210px
+ }
+
+ .aboutSection{
+   margin-top: 150px;
+ }
+
+ .about-overlay{
+   margin-top: 40px;
+   opacity: .7;
+ }
+
+ .about-us{
+   text-decoration: underline;
+ }
+
+ .our-menu-section{
+   margin-top: 30px;
+   text-decoration: underline;
+ }
+
+ .center-menu{
+   margin-top: 175px;
+   text-align: center;
+ }
+
+ .our-menu-overlay{
+   margin-top: 40px;
+   opacity: 1;
+ }
+
+ .c-font {
+    font-family: 'Cairo', sans-serif;
+ }
+
+ .bold-c-font {
+    font-family: 'Cairo', sans-serif;
+    font-weight: bolder;
+ }
+
+ #home-heading2 {
+   position: relative;
+   min-height: 500px;
+   margin-top: 20px;
+   /* top: 100px; */
+   background: url('./imgs/togo.jpg');
+   background-attachment: fixed;
+   background-repeat: no-repeat;
+   background-size: cover;
+   text-align: center;
+   color: #fff;
+   margin-top: 150px;
+
+ }
+
+ .footer {
+   margin-top: 300px;
+ }
