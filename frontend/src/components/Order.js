@@ -52,7 +52,7 @@ class Order extends Component {
         <div> <section className="order">
         </section></div>
         <div className="order-overlay">
-          <h3 className='bold-white'> Order </h3>
+          <h3 className='bold-white c-font'> Order </h3>
           {foodItems}
           <Card className="menu_card">
             <Card.Body>

@@ -27,11 +27,10 @@ class NavTop extends Component {
     </Nav>
     <Nav>
     <NavDropdown className="bold-c-font"title="Account" id="collasible-nav-dropdown">
-    <NavDropdown.Item className="bold-c-font" href="signin">Sign In</NavDropdown.Item>
-    <NavDropdown.Item className="bold-c-font" href="signup">Sign Up</NavDropdown.Item>
+     {this.props.userName ? null : <NavDropdown.Item className="bold-c-font" href="signin">Sign In</NavDropdown.Item>}
+     {this.props.userName ? null : <NavDropdown.Item className="bold-c-font" href="signup">Sign Up</NavDropdown.Item>}
     {this.props.userName ? <NavDropdown.Item className="bold-c-font" href="edit">Edit Account</NavDropdown.Item> : null}
     <NavDropdown.Divider />
-    <NavDropdown.Item className="bold-c-font" href="https://www.doordash.com/store/koibito-one-at-lacey-lacey-568343/en-US" target="_blank">DoorDash Link</NavDropdown.Item>
     {this.props.userName ? <NavDropdown.Item className="bold-c-font" onClick={this.handleLogout}> Logout </NavDropdown.Item> : null}
     </NavDropdown>
     {this.props.userName ? <Nav.Link className="bold-c-font">Welcome {this.props.userName.charAt(0).toUpperCase() + this.props.userName.slice(1)}! </Nav.Link> : <Nav.Link>  </Nav.Link>}

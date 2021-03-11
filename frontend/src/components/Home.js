@@ -117,12 +117,12 @@ class Home extends Component {
       <div className="container">
         <div className="row">
           <div className="col-md-6 align-self-center our-menu-overlay">
-          <img src={sushi} alt="" className="img-fluid"/>
+          <h3 className="bold-white our-menu-section bold-c-font">Feeling Lazy?</h3>
+          <p className='text-white c-font'> We all have those days, where we want to stay home and just don't feel like cooking. Well, we've got you covered! We are now on DoorDash! Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.  </p>
+          <a href='https://www.doordash.com/store/koibito-one-at-lacey-lacey-568343/en-US' target="_blank" className="btn btn-outline-danger btn-lg">Order Delivery!</a>
           </div>
           <div className="col-md-6 about-overlay">
-            <h3 className="bold-white our-menu-section bold-c-font">Feeling Lazy?</h3>
-            <p className='text-white c-font'> We all have those days, where we want to stay home and just don't feel like cooking. Well, we've got you covered! We are now on DoorDash! Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.  </p>
-            <a href='https://www.doordash.com/store/koibito-one-at-lacey-lacey-568343/en-US' target="_blank" className="btn btn-outline-danger btn-lg">Order Delivery!</a>
+          <img src={sushi} alt="" className="img-fluid"/>
           </div>
         </div>
       </div>
