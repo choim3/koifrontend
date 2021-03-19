@@ -20,7 +20,9 @@ import {useSelector, useDispatch} from 'react-redux' // this lets you output the
 import {useEffect} from 'react'
 import {CURRENT_USER, SET_FOOD_IN_ORDER} from './actions/types'
 
+
 function App() {
+
   const userEmail = useSelector(state => state.userReducer.user.email);
   const userName = useSelector(state => state.userReducer.user.name);
   const userPassword = useSelector(state => state.userReducer.user.password);
@@ -55,6 +57,7 @@ function App() {
       <Router>
         <div className="App">
           <NavTop userName={userName} itemsInCart={itemsInCart}/>
+
           {/*Add error handling if, I have time.*/}
           <Switch>
             <Route path='/' exact component={Home} />

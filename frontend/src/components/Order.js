@@ -3,6 +3,7 @@ import {connect} from 'react-redux';
 import {checkoutOrder, deleteItem} from '../actions/orderAction';
 import 'bootstrap/dist/css/bootstrap.min.css'
 import {Modal, Card, Form} from 'react-bootstrap'
+import StripeCheckout from 'react-stripe-checkout'
 
 class Order extends Component {
 
@@ -10,6 +11,7 @@ class Order extends Component {
     checkoutOrder(this.props.order[0].order_id)
     window.location.reload(true)
   }
+
   removeItem = (e, orderMenuId) => {
     e.preventDefault()
     this.props.deleteItem(orderMenuId)
@@ -35,6 +37,11 @@ class Order extends Component {
     let total = 0
     total = (subtotal * .065) + subtotal
     return total.toFixed(2)
+  }
+
+  handleToken = (token, addresses) => {
+    debugger
+    console.log(`${token}`)
   }
 
   render() {
@@ -66,6 +73,9 @@ class Order extends Component {
                 Total: ${this.getTotalPrice(this.getSubTotalPrice())}
               </Card.Title>
             </Card.Body>
+            <StripeCheckout stripeKey={"pk_test_51IW8mYD2YbwCLQ0mGQjqJxmGDqa1TH8y9Zu6arheyVPNi5kmVcl0LjpPR7bjeFCN1zFMxevy2xIRJsUDQ6ghaIwG001JohPIf9"}
+            token={this.handleToken}
+            amount={this.getTotalPrice(this.getSubTotalPrice()) * 100}/>
             <button className="btn btn-outline-success c-font" onClick={this.handleCheckout}>Place Order</button>
           </Card>
         </div>
